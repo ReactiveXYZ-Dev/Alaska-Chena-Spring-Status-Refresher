@@ -9,9 +9,11 @@ var casper = require('casper').create({
 var arrDate = casper.cli.get("arrive-date");
 var deptDate = casper.cli.get("dept-date")
 
+casper.start();
+
 function runSteps() {
     // start the scrapping procedure...
-    casper.start("https://secure.chenahotsprings.com/webres/webres.asp");
+    casper.thenOpen("https://secure.chenahotsprings.com/webres/webres.asp");
 
     // wait for the picker page to load up
     casper.waitForSelector('div.calendarDIV', function () {
@@ -60,7 +62,7 @@ function runSteps() {
 function start() {
     runSteps();
     casper.run(function() {
-        setInterval(start, 20000);
+        setTimeout(start, 2000);
     });
 }
 
