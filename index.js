@@ -19,7 +19,7 @@ var sendMail = function() {
 
 var scrape = function(refreshInterval) {
     // create scrapper process
-    var p = cp.spawn("casperjs", ["scraper.js", "--interval=2"]);
+    var p = cp.spawn("casperjs", ["scraper.js", "--interval=" + refreshInterval ]);
     console.log("=========== Start scrapping 3rd Mar Alaska Tour ==========");
 
     // register stdout listeneres
@@ -45,6 +45,6 @@ var scrape = function(refreshInterval) {
 }
 
 // Start scrapping...
-const REFRESH_INTERVAL = 20000;
+const REFRESH_INTERVAL = 2; // in seconds
 
 scrape(REFRESH_INTERVAL);
