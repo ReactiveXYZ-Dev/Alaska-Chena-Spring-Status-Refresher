@@ -57,12 +57,12 @@ function runSteps() {
     });
 }
 
-function reload() {
+function start() {
     runSteps();
     casper.run(function() {
-        setInterval(reload, 20000);
+        setInterval(start, 20000);
     });
 }
 
-reload()
+start()
 
