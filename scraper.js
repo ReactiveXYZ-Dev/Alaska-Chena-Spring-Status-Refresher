@@ -8,9 +8,12 @@ var casper = require('casper').create({
 // TODO: convert them into actions
 var arrDate = casper.cli.get("arrive-date");
 var deptDate = casper.cli.get("dept-date")
+var refreshInterval = casper.cli.get("interval") ? casper.cli.get("interval") : 2;
 
+// init phantomjs backend
 casper.start();
 
+// compose the steps
 function runSteps() {
     // start the scrapping procedure...
     casper.thenOpen("https://secure.chenahotsprings.com/webres/webres.asp");
@@ -59,12 +62,14 @@ function runSteps() {
     });
 }
 
+// start with infinite recursing
 function start() {
     runSteps();
     casper.run(function() {
-        setTimeout(start, 2000);
+        setTimeout(start, refreshInterval * 1000);
     });
 }
 
-start()
+// kick start the process
+start();
 
