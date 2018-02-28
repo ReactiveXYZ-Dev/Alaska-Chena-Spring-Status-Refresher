@@ -17,9 +17,9 @@ var sendMail = function() {
     .catch(err => console.log(err));
 }
 
-var scrape = function() {
+var scrape = function(refreshInterval) {
     // create scrapper process
-    var p = cp.spawn("casperjs", ["scraper.js"]);
+    var p = cp.spawn("casperjs", ["scraper.js", "--interval=2"]);
     console.log("=========== Start scrapping 3rd Mar Alaska Tour ==========");
 
     // register stdout listeneres
@@ -38,7 +38,7 @@ var scrape = function() {
     p.stderr.on('data', (data) => {
         console.log(`stderr: ${data}`);
     });
-    
+
     p.on('close', (code) => {
         console.log(`child process exited with code ${code}`);
     });
@@ -47,7 +47,4 @@ var scrape = function() {
 // Start scrapping...
 const REFRESH_INTERVAL = 20000;
 
-scrape()
-setInterval(function() {
-    scrape();
-}, REFRESH_INTERVAL);
+scrape(REFRESH_INTERVAL);
