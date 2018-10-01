@@ -2,14 +2,14 @@ var cp = require('child_process');
 var mailgun = require('mailgun.js');
 var mailClient = mailgun.client({
     username: 'api',
-    key: "key-e593ce801035acd418bf37df27feb6e2"
+    key: ""
 })
 
 var sendMail = function() {
     // send email
-    mailClient.messages.create('mail.classspy.com', {
-        from: "Alaska Tour <internal@classspy.com>",
-        to: ["jackiee1998@hotmail.com"],
+    mailClient.messages.create('mail.example.com', {
+        from: "Alaska Tour <internal@example.com>",
+        to: ["example@example.com"],
         subject: "Rooms available for 3rd Mar!",
         html: "Come be quick! <a href='https://secure.chenahotsprings.com/webres/webres.asp'>Click here to register</a> ."
     })
